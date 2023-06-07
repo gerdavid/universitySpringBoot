@@ -1,7 +1,11 @@
 package com.davidger.studentservice.student;
 
+import com.davidger.studentservice.university.UniversityClass;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -19,4 +23,9 @@ public class Student {
 
     @Column(nullable = false)
     private Integer studentId;
+
+    @ManyToMany(fetch=FetchType.LAZY, cascade ={CascadeType.MERGE} )
+    @JoinTable(name ="student_university_class", joinColumns = {@JoinColumn(name = "student_id")},
+     inverseJoinColumns = {@JoinColumn(name = "university_class_id")})
+    private Set<UniversityClass> universityClasses= new HashSet<>();
 }
