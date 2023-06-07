@@ -1,7 +1,6 @@
 package com.davidger.studentservice.university;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Setter @Getter
@@ -9,4 +8,7 @@ import lombok.*;
 @Entity @Builder
 @Table(name = "university")
 public class UniversityClass {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 }
